@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Lottie Animation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Weather Forecast</h1>
+            <button id="theme-toggle" aria-label="Toggle theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </header>
+
+        <div class="search-container">
+            <form id="search-form">
+                <div class="search-input-container">
+                    <input type="text" id="city-input" placeholder="Search for a city...">
+                    <button type="submit">
+                        <i class="fas fa-search"></i>
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <div id="error-container" class="hidden">
+            <div class="error-alert">
+                <i class="fas fa-circle-exclamation"></i>
+                <div>
+                    <h4>Error</h4>
+                    <p id="error-message"></p>
+                </div>
+            </div>
+        </div>
+
+        <div id="loading-container" class="hidden">
+            <div class="loader"></div>
+        </div>
+
+        <div id="weather-container" class="hidden">
+            <!-- Current Weather -->
+            <div class="card current-weather">
+                <div class="card-header">
+                    <div>
+                        <h2 id="location"></h2>
+                        <p id="date"></p>
+                    </div>
+                    <span id="weather-condition" class="badge"></span>
+                </div>
+                <div class="card-content">
+                    <div class="current-weather-main">
+                        <div class="weather-icon-container">
+                            <img id="weather-icon" src="/placeholder.svg" alt="Weather condition">
+                        </div>
+                        <div>
+                            <h2 id="temperature"></h2>
+                            <p id="weather-description"></p>
+                            <p id="feels-like"></p>
+                        </div>
+                    </div>
+                    <div class="weather-details">
+                        <div class="weather-detail-item">
+                            <i class="fas fa-droplet"></i>
+                            <span>Humidity</span>
+                            <span id="humidity"></span>
+                        </div>
+                        <div class="weather-detail-item">
+                            <i class="fas fa-wind"></i>
+                            <span>Wind</span>
+                            <span id="wind-speed"></span>
+                        </div>
+                        <div class="weather-detail-item">
+                            <i class="fas fa-sun"></i>
+                            <span>Sunrise</span>
+                            <span id="sunrise"></span>
+                        </div>
+                        <div class="weather-detail-item">
+                            <i class="fas fa-moon"></i>
+                            <span>Sunset</span>
+                            <span id="sunset"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5-Day Forecast -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>5-Day Forecast</h3>
+                </div>
+                <div class="card-content">
+                    <div id="forecast-container" class="forecast-grid"></div>
+                </div>
+            </div>
+
+            <!-- Weather Charts -->
+            <div class="card">
+                <div class="card-header">
+                    <h3>Weather Trends</h3>
+                </div>
+                <div class="card-content">
+                    <div class="tabs">
+                        <button class="tab-button active" data-tab="temperature">Temperature</button>
+                        <button class="tab-button" data-tab="humidity">Humidity</button>
+                        <button class="tab-button" data-tab="wind">Wind Speed</button>
+                    </div>
+                    <div class="tab-content">
+                        <div id="temperature-chart" class="chart-container active">
+                            <canvas id="temperature-canvas"></canvas>
+                        </div>
+                        <div id="humidity-chart" class="chart-container">
+                            <canvas id="humidity-canvas"></canvas>
+                        </div>
+                        <div id="wind-chart" class="chart-container">
+                            <canvas id="wind-canvas"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Weather data provided by OpenWeatherMap</p>
+            <p>&copy; <span id="current-year"></span> Weather Forecast App</p>
+        </footer>
+    </div>
+
+    <script src="weather-animations.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
